@@ -18,7 +18,6 @@ setup(int64_t N, int64_t A[])
    std::uniform_int_distribution<std::int64_t> dist(0, MAXSIZE);
 
    int64_t i = 0;
-   int64_t sum = 0;
    for(i = 0; i < N; i++){
 
       
@@ -36,7 +35,7 @@ sum(int64_t N, int64_t A[])
 
    for(i = 0; i < N; i++){
 
-      sum+= A[i];
+      sum += A[i];
 
    }
 
