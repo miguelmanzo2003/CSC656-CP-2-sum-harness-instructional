@@ -27,7 +27,7 @@ sum(int64_t N, int64_t A[])
       sum += i;
 
    }
-
+   std::cout << "sum is: " << sum << std::endl;
    return sum;
 }
 

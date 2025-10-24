@@ -48,7 +48,8 @@ int main(int argc, char** argv)
       float elapsed_time_too = elapsed_time.count();
 
       std::cout << "Elapsed time: " << elapsed_time_too << "seconds" << std::endl;
-      printf(" Sum result = %lf \n",t);
+      std::cout << "Valeue of sum = " << t << std::endl;
+      printf(" Sum result = %lf \n\n",t);
 
    } // end loop over problem sizes
 }
