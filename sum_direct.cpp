@@ -5,6 +5,9 @@
 #include <random>
 #include <vector>
 #include <string.h>
+#define __STDC_FORMAT_MACROS   // safest: enables PRI* macros in C++
+#include <cinttypes>           // gives PRIu64 and friends (also pulls in <cstdint>)
+#include <cstdio>      
 
 #include "sums.h"
 
@@ -27,7 +30,7 @@ sum(int64_t N, int64_t A[])
       sum += i;
 
    }
-   std::cout << "sum is: " << sum << std::endl;
+   printf("Sum = %" PRIu64 "\n", sum);
    return sum;
 }
 

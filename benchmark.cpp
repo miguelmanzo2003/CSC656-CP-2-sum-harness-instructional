@@ -13,6 +13,9 @@
 #include <random>
 #include <vector>
 #include <string.h>
+#define __STDC_FORMAT_MACROS   // safest: enables PRI* macros in C++
+#include <cinttypes>           // gives PRIu64 and friends (also pulls in <cstdint>)
+#include <cstdio>      
 
 #include "sums.h"
 
@@ -41,6 +44,7 @@ int main(int argc, char** argv)
       auto start = std::chrono::system_clock::now();
       // invoke method to perform the sum
       t = sum(n, &A[0]);
+      printf("Sum from within benchmark = %" PRIu64 "\n", sum);
 
       // insert your end timer code here, and print out elapsed time for this problem size
       auto end = std::chrono::system_clock::now();
