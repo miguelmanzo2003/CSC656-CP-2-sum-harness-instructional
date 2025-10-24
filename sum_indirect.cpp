@@ -14,12 +14,14 @@ setup(int64_t N, int64_t A[])
 {
    printf(" inside sum_indirect problem_setup, N=%lld \n", N);
 
+   std::mt19937_64 gen(std::random_device{}());
+   std::uniform_int_distribution<std::int64_t> dist(0, MAXSIZE);
+
    int64_t i = 0;
    int64_t sum = 0;
    for(i = 0; i < N; i++){
 
-      std::mt19937_64 gen(std::random_device{}());
-      std::uniform_int_distribution<std::int64_t> dist(0, MAXSIZE);
+      
       A[i] = dist(gen);
    }
 }
