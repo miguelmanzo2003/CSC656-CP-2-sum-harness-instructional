@@ -53,6 +53,27 @@ int main(int argc, char** argv)
 
       std::cout << "Elapsed time: " << elapsed_time_too << "seconds" << std::endl;
       printf(" Sum result = %" PRIu64 "\n\n",t);
+      
+      //mflops calc --> (ops/time) * (1/(10^6))
+      double mflops = (n/elapsed_time_too) * (1/1000000);
+
+      //bandwith calc --> (bAchieved/bPeak) * 100
+
+         // * 8 because each iteration reads an 8 byte value from mem
+      int64_t achieved = ((n * 8)/elapsed_time_too)/1000000000;
+         //memory bandwidth per CPU
+      int64_t peak = 204.8;
+      int64_t memBandwith = (achieved/peak) * 100; 
+
+      //latency calc
+      double latency = (elapsed_time_too/n) * 1000000000;
+
+      //prints
+      printf("MFLOP/S  =  %" PRIu64 "\n", mflops);
+      printf("Memory Bandwidth Utilized  =  %" PRIu64 "%\n", memBandwith);
+      printf("MFLOP/S  =  %" PRIu64 "\n", latency);
+
+
 
    } // end loop over problem sizes
 }
