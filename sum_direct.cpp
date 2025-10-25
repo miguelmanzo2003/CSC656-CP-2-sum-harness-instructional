@@ -30,7 +30,7 @@ sum(int64_t N, int64_t A[])
       sum += i;
 
    }
-   printf("Sum = %" PRIu64 "\n", sum);
+   
    return sum;
 }
 

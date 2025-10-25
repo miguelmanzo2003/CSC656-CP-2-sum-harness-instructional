@@ -22,7 +22,7 @@
 /* The benchmarking program */
 int main(int argc, char** argv) 
 {
-   std::cout << std::fixed << std::setprecision(2);
+   std::cout << std::fixed << std::setprecision(4);
 
 #define MAX_PROBLEM_SIZE 1 << 28  //  256M
    std::vector<int64_t> problem_sizes{ MAX_PROBLEM_SIZE >> 5, MAX_PROBLEM_SIZE >> 4, MAX_PROBLEM_SIZE >> 3, MAX_PROBLEM_SIZE >> 2, MAX_PROBLEM_SIZE >> 1, MAX_PROBLEM_SIZE};
@@ -49,31 +49,30 @@ int main(int argc, char** argv)
       // insert your end timer code here, and print out elapsed time for this problem size
       auto end = std::chrono::system_clock::now();
       std::chrono::duration<double> elapsed_time = end - start;
-      float elapsed_time_too = elapsed_time.count();
+      double elapsed_time_too = elapsed_time.count();
 
-      std::cout << "Elapsed time: " << elapsed_time_too << "seconds" << std::endl;
-      printf(" Sum result = %" PRIu64 "\n\n",t);
+      std::cout << " Elapsed time: " << elapsed_time_too << "seconds" << std::endl;
+      printf(" Sum result = %" PRIu64 "\n",t);
       
       //mflops calc --> (ops/time) * (1/(10^6))
-      double mflops = (n/elapsed_time_too) * (1/1000000);
+      double mflops = (static_cast<double>(n)/elapsed_time_too) * (1/1e6);
 
       //bandwith calc --> (bAchieved/bPeak) * 100
-
          // * 8 because each iteration reads an 8 byte value from mem
-      int64_t achieved = ((n * 8)/elapsed_time_too)/1000000000;
+      double achieved = ((static_cast<double>(n) * 8.0) / elapsed_time_too) / 1e9;
          //memory bandwidth per CPU
-      int64_t peak = 204.8;
-      int64_t memBandwith = (achieved/peak) * 100; 
+      double peak = 204.8;
+      double achOverPeak = achieved/peak;
+      //std::cout << "achived/peak = " << achOverPeak << std::endl;
+      double memBandwith = (achieved/peak) * 100; 
 
       //latency calc
-      double latency = (elapsed_time_too/n) * 1000000000;
+      double latency = (elapsed_time_too/n) * 1e9;
 
       //prints
-      printf("MFLOP/S  =  %" PRIu64 "\n", mflops);
-      printf("Memory Bandwidth Utilized  =  %" PRIu64 "%\n", memBandwith);
-      printf("MFLOP/S  =  %" PRIu64 "\n", latency);
-
-
+      printf(" MFLOP/S  =  %f\n", mflops);
+      printf(" Latency  =  %fns\n", latency);
+      printf(" Memory Bandwidth Utilized  =  %f%\n\n", memBandwith);
 
    } // end loop over problem sizes
 }
