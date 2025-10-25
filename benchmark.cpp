@@ -44,7 +44,7 @@ int main(int argc, char** argv)
       auto start = std::chrono::system_clock::now();
       // invoke method to perform the sum
       t = sum(n, &A[0]);
-      printf("Sum from within benchmark = %" PRIu64 "\n", sum);
+     
 
       // insert your end timer code here, and print out elapsed time for this problem size
       auto end = std::chrono::system_clock::now();
@@ -52,8 +52,7 @@ int main(int argc, char** argv)
       float elapsed_time_too = elapsed_time.count();
 
       std::cout << "Elapsed time: " << elapsed_time_too << "seconds" << std::endl;
-      std::cout << "Valeue of sum = " << t << std::endl;
-      printf(" Sum result = %lf \n\n",t);
+      printf(" Sum result = %" PRIu64 "\n\n",t);
 
    } // end loop over problem sizes
 }
