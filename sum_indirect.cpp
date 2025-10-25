@@ -32,11 +32,11 @@ sum(int64_t N, int64_t A[])
 
    int64_t i = 0;
    int64_t sum = 0;
-
+   int64_t indx = A[0];
    for(i = 0; i < N; i++){
 
-      sum += A[i];
-
+      sum += A[indx];
+      indx = A[indx];
    }
 
    return sum;
